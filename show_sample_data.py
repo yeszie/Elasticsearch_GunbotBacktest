@@ -10,11 +10,19 @@ es = Elasticsearch(
 )
 
 # Nazwa indeksu
-index_name = 'gunbot-backtest'
+index_name = 'gunbot-backtest1'
 
-# Zapytanie o kilka dokumentów z indeksu
-response = es.search(index=index_name, body={"query": {"match_all": {}}, "size": 5})
+try:
+    # Wykonanie zapytania o kilka dokumentów z indeksu
+    response = es.search(index=index_name, body={"query": {"match_all": {}}, "size": 5})
+    
+    # Sprawdzenie, czy są wyniki
+    if response['hits']['total']['value'] > 0:
+        # Wyświetlanie wyników
+        for hit in response['hits']['hits']:
+            print(hit['_source'])
+    else:
+        print("Brak wyników w indeksie.")
 
-# Wyświetlanie wyników
-for hit in response['hits']['hits']:
-    print(hit['_source'])
+except Exception as e:
+    print(f"Wystąpił błąd podczas wyszukiwania w indeksie: {e}")
