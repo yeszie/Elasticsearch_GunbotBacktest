@@ -1,0 +1,1 @@
+Wersja z obsługą APM. Przydatne dla instalacji nienadzorowanych z nowymi typami danych nie objętych obecnie obsługą w skrypcie w sposób zgodny dla prawidłowego mapowania typów danych do Elasticsearch.
